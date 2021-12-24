@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище NailsShopModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="appointments">
+          <Key>
+            <PropertyRef Name="id_appointment" />
+          </Key>
+          <Property Name="id_appointment" Type="int" Nullable="false" />
+          <Property Name="id_procedure" Type="int" Nullable="false" />
+          <Property Name="id_customer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="id_customer" />
+          </Key>
+          <Property Name="id_customer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="second_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone_num" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="procedures">
+          <Key>
+            <PropertyRef Name="id_procedure" />
+          </Key>
+          <Property Name="id_procedure" Type="int" Nullable="false" />
+          <Property Name="procedure_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="procedure_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="procedure_price" Type="float" />
+        </EntityType>
+        <Association Name="FK_appointments_customers">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="appointments" Type="Self.appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id_customer" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="id_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_appointments_procedures">
+          <End Role="procedures" Type="Self.procedures" Multiplicity="1" />
+          <End Role="appointments" Type="Self.appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procedures">
+              <PropertyRef Name="id_procedure" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="id_procedure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище NailsShopModelContainer">
+          <EntitySet Name="appointments" EntityType="Self.appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="procedures" EntityType="Self.procedures" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_appointments_customers" Association="Self.FK_appointments_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_appointments_procedures" Association="Self.FK_appointments_procedures">
+            <End Role="procedures" EntitySet="procedures" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NailsShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="id_customer" />
+          </Key>
+          <Property Name="id_customer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="second_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone_num" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="appointments" Relationship="NailsShopModel.FK_appointments_customers" FromRole="customers" ToRole="appointments" />
+        </EntityType>
+        <EntityType Name="procedures">
+          <Key>
+            <PropertyRef Name="id_procedure" />
+          </Key>
+          <Property Name="id_procedure" Type="Int32" Nullable="false" />
+          <Property Name="procedure_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="procedure_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="procedure_price" Type="Double" />
+          <NavigationProperty Name="appointments" Relationship="NailsShopModel.FK_appointments_procedures" FromRole="procedures" ToRole="appointments" />
+        </EntityType>
+        <EntityContainer Name="NailsShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customers" EntityType="Self.customers" />
+          <EntitySet Name="procedures" EntityType="Self.procedures" />
+          <EntitySet Name="appointments" EntityType="NailsShopModel.appointments" />
+          <AssociationSet Name="FK_appointments_customers" Association="NailsShopModel.FK_appointments_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_appointments_procedures" Association="NailsShopModel.FK_appointments_procedures">
+            <End Role="procedures" EntitySet="procedures" />
+            <End Role="appointments" EntitySet="appointments" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="appointments">
+          <Key>
+            <PropertyRef Name="id_appointment" />
+          </Key>
+          <Property Name="id_appointment" Type="Int32" Nullable="false" />
+          <Property Name="id_customer" Type="Int32" Nullable="false" />
+          <Property Name="id_procedure" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="customers" Relationship="NailsShopModel.FK_appointments_customers" FromRole="appointments" ToRole="customers" />
+          <NavigationProperty Name="procedures" Relationship="NailsShopModel.FK_appointments_procedures" FromRole="appointments" ToRole="procedures" />
+        </EntityType>
+        <Association Name="FK_appointments_customers">
+          <End Type="NailsShopModel.customers" Role="customers" Multiplicity="1" />
+          <End Type="NailsShopModel.appointments" Role="appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id_customer" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="id_customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_appointments_procedures">
+          <End Type="NailsShopModel.procedures" Role="procedures" Multiplicity="1" />
+          <End Type="NailsShopModel.appointments" Role="appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="procedures">
+              <PropertyRef Name="id_procedure" />
+            </Principal>
+            <Dependent Role="appointments">
+              <PropertyRef Name="id_procedure" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище NailsShopModelContainer" CdmEntityContainer="NailsShopEntities">
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="NailsShopModel.customers">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="second_name" ColumnName="second_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone_num" ColumnName="phone_num" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="procedures">
+            <EntityTypeMapping TypeName="NailsShopModel.procedures">
+              <MappingFragment StoreEntitySet="procedures">
+                <ScalarProperty Name="id_procedure" ColumnName="id_procedure" />
+                <ScalarProperty Name="procedure_name" ColumnName="procedure_name" />
+                <ScalarProperty Name="procedure_type" ColumnName="procedure_type" />
+                <ScalarProperty Name="procedure_price" ColumnName="procedure_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="appointments">
+            <EntityTypeMapping TypeName="NailsShopModel.appointments">
+              <MappingFragment StoreEntitySet="appointments">
+                <ScalarProperty Name="id_procedure" ColumnName="id_procedure" />
+                <ScalarProperty Name="id_customer" ColumnName="id_customer" />
+                <ScalarProperty Name="id_appointment" ColumnName="id_appointment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
