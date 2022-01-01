@@ -15,7 +15,7 @@ namespace NailsShopApp.Models
     public partial class appointments
     {
         public int id_appointment { get; set; }
-        public int id_customer { get; set; }
+        public int Id_customer { get; set; }
         public int id_procedure { get; set; }
     
         public virtual customers customers { get; set; }

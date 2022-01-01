@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f115e338d2c04b75b7809217c7ef5dc1" Name="Diagram1">
-        <EntityTypeShape EntityType="NailsShopModel.customers" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailsShopModel.procedures" Width="1.5" PointX="2.75" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NailsShopModel.appointments" Width="1.5" PointX="2" PointY="4.25" />
-        <AssociationConnector Association="NailsShopModel.FK_appointments_customers" />
-        <AssociationConnector Association="NailsShopModel.FK_appointments_procedures" />
+      <Diagram DiagramId="90f99d4afd2d4865b41b5661967b1dc0" Name="Diagram1">
+        <EntityTypeShape EntityType="NailsShopModel.appointments" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NailsShopModel.customers" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NailsShopModel.procedures" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="NailsShopModel.FK_appointments_appointments" ManuallyRouted="false" />
+        <AssociationConnector Association="NailsShopModel.FK_appointments_procedures" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
