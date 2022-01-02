@@ -10,46 +10,46 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using NailsShopApp.Models;
 
-namespace NailsShopApp.App_Start
+namespace NailsShopApp.Controllers
 {
-    public class proceduresController : ApiController
+    public class customersController : ApiController
     {
         private NailsShopEntities db = new NailsShopEntities();
 
-        // GET: api/procedures
-        public IQueryable<procedures> Getprocedures()
+        // GET: api/customers
+        public IQueryable<customers> Getcustomers()
         {
-            return db.procedures;
+            return db.customers;
         }
 
-        // GET: api/procedures/5
-        [ResponseType(typeof(procedures))]
-        public IHttpActionResult Getprocedures(int id)
+        // GET: api/customers/5
+        [ResponseType(typeof(customers))]
+        public IHttpActionResult Getcustomers(int id)
         {
-            procedures procedures = db.procedures.Find(id);
-            if (procedures == null)
+            customers customers = db.customers.Find(id);
+            if (customers == null)
             {
                 return NotFound();
             }
 
-            return Ok(procedures);
+            return Ok(customers);
         }
 
-        // PUT: api/procedures/5
+        // PUT: api/customers/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putprocedures(int id, procedures procedures)
+        public IHttpActionResult Putcustomers(int id, customers customers)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != procedures.id_procedure)
+            if (id != customers.id_customer)
             {
                 return BadRequest();
             }
 
-            db.Entry(procedures).State = EntityState.Modified;
+            db.Entry(customers).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace NailsShopApp.App_Start
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!proceduresExists(id))
+                if (!customersExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace NailsShopApp.App_Start
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/procedures
-        [ResponseType(typeof(procedures))]
-        public IHttpActionResult Postprocedures(procedures procedures)
+        // POST: api/customers
+        [ResponseType(typeof(customers))]
+        public IHttpActionResult Postcustomers(customers customers)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.procedures.Add(procedures);
+            db.customers.Add(customers);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = procedures.id_procedure }, procedures);
+            return CreatedAtRoute("DefaultApi", new { id = customers.id_customer }, customers);
         }
 
-        // DELETE: api/procedures/5
-        [ResponseType(typeof(procedures))]
-        public IHttpActionResult Deleteprocedures(int id)
+        // DELETE: api/customers/5
+        [ResponseType(typeof(customers))]
+        public IHttpActionResult Deletecustomers(int id)
         {
-            procedures procedures = db.procedures.Find(id);
-            if (procedures == null)
+            customers customers = db.customers.Find(id);
+            if (customers == null)
             {
                 return NotFound();
             }
 
-            db.procedures.Remove(procedures);
+            db.customers.Remove(customers);
             db.SaveChanges();
 
-            return Ok(procedures);
+            return Ok(customers);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace NailsShopApp.App_Start
             base.Dispose(disposing);
         }
 
-        private bool proceduresExists(int id)
+        private bool customersExists(int id)
         {
-            return db.procedures.Count(e => e.id_procedure == id) > 0;
+            return db.customers.Count(e => e.id_customer == id) > 0;
         }
     }
 }
