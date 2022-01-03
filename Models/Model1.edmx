@@ -10,7 +10,7 @@
             <PropertyRef Name="id_appointment" />
           </Key>
           <Property Name="id_appointment" Type="int" Nullable="false" />
-          <Property Name="id_customer" Type="int" Nullable="false" />
+          <Property Name="id_customer" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="id_procedure" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="customers">
@@ -48,7 +48,7 @@
             <PropertyRef Name="id_appointment" />
           </Key>
           <Property Name="id_appointment" Type="Int32" Nullable="false" />
-          <Property Name="id_customer" Type="Int32" Nullable="false" />
+          <Property Name="id_customer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id_procedure" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="customers">
