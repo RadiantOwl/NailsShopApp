@@ -14,20 +14,11 @@ namespace NailsShopApp.Models
     
     public partial class customers
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public customers()
-        {
-            this.appointments = new HashSet<appointments>();
-        }
-    
         public int id_customer { get; set; }
         public string first_name { get; set; }
         public string second_name { get; set; }
         public string email { get; set; }
         public string phone_num { get; set; }
         public System.DateTime date { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<appointments> appointments { get; set; }
     }
 }

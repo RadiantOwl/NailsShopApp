@@ -16,9 +16,6 @@ namespace NailsShopApp.Models
     {
         public int id_appointment { get; set; }
         public int id_customer { get; set; }
-        public int id_procedure { get; set; }
-    
-        public virtual customers customers { get; set; }
-        public virtual procedures procedures { get; set; }
+        public string id_procedure { get; set; }
     }
 }

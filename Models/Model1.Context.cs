@@ -25,8 +25,8 @@ namespace NailsShopApp.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<appointments> appointments { get; set; }
         public virtual DbSet<customers> customers { get; set; }
         public virtual DbSet<procedures> procedures { get; set; }
-        public virtual DbSet<appointments> appointments { get; set; }
     }
 }

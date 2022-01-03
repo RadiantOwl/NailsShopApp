@@ -14,18 +14,9 @@ namespace NailsShopApp.Models
     
     public partial class procedures
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public procedures()
-        {
-            this.appointments = new HashSet<appointments>();
-        }
-    
         public int id_procedure { get; set; }
         public string procedure_name { get; set; }
         public string procedure_type { get; set; }
         public Nullable<double> procedure_price { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<appointments> appointments { get; set; }
     }
 }
